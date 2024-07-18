@@ -1,0 +1,18 @@
+{
+  "grupo_emp": "JOBSON",
+  "bases": ["MATRIZ", "MOSSORO"],
+  "timezone": "America/Sao_Paulo",
+  "sem_base": true,
+  "skip": 0,
+  "user": {
+    "grupo": "SUPER"
+  },
+  "buscar_tudo": false,
+  "paginacao": 500,
+  "filtros": {
+    "dt_emis": {
+      "dt_ini": "2024-03-01 00:00:00",
+      "dt_fim": "2024-04-30 23:59:59"
+    }
+  }
+}
