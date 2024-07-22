@@ -1,6 +1,15 @@
 import http from "k6/http";
 import { check, sleep } from "k6";
 import { baseURL, params } from "../config.js";
+import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
+
+export function handleSummary(data) {
+  const timestamp = new Date().toISOString().replace(/[:.-]/g, "_");
+  const fileName = `summaryPesquisa_${timestamp}.html`;
+  return {
+    [fileName]: htmlReport(data),
+  };
+}
 
 export const options = {
   vus: 2,

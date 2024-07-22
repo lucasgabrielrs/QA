@@ -1,10 +1,22 @@
 import http from "k6/http";
-import { check, sleep } from "k6";
+import { check, sleep, fail } from "k6";
 import { baseURL, params } from "../config.js";
+import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
+
+export function handleSummary(data) {
+  const timestamp = new Date().toISOString().replace(/[:.-]/g, "_");
+  const fileName = `summary_${timestamp}.html`;
+  return {
+    [fileName]: htmlReport(data),
+  };
+}
 
 export const options = {
-  vus: 1,
-  iterations: 2,
+  stages: [
+    { duration: "30s", target: 200 },
+    { duration: "20s", target: 250 },
+    { duration: "30s", target: 0 },
+  ],
 };
 
 const payload = JSON.parse(open("../payloads/romaneioPayload.json"));
@@ -20,13 +32,19 @@ export default function () {
       body = JSON.parse(resp.body);
     } catch (e) {
       console.error("Erro ao parsear a resposta JSON:", e);
-      return;
     }
 
     let mensagem = body.mensagem;
-    var numero = body.romaneio.numero;
-    console.log("Mensagem:", mensagem);
-    console.log("Numero: ", numero);
+
+    if (body.romaneio && body.romaneio.numero) {
+      var numero = body.romaneio.numero;
+    } //else {
+
+    //console.error(
+    //"A resposta não contém a propriedade 'romaneio' ou 'romaneio.numero'."
+    //);
+    //console.error("Resposta completa:", body);
+    //}
 
     check(resp, {
       "Status should be 200": (r) => r.status === 200,
@@ -48,7 +66,6 @@ export default function () {
       delBody = JSON.parse(del.body);
     } catch (e) {
       console.error("Erro ao parsear a resposta JSON:", e);
-      return;
     }
 
     check(del, {
@@ -57,4 +74,6 @@ export default function () {
   } else {
     console.error("Request failed. Status code:", del.status);
   }
+
+  sleep(2);
 }
