@@ -1,7 +1,8 @@
 import http from "k6/http";
-import { check, sleep, fail } from "k6";
+import { check, sleep } from "k6";
 import { baseURL, params } from "../config.js";
 import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
+import gerarPayload from "../payloads/payloadRomaneio.js";
 
 export function handleSummary(data) {
   const timestamp = new Date().toISOString().replace(/[:.-]/g, "_");
@@ -25,7 +26,7 @@ export const options = {
   },
 };
 
-const payload = JSON.parse(open("../payloads/romaneioPayload.json"));
+const payload = gerarPayload();
 
 export default function () {
   const url = `${baseURL}/romaneios/criar`;
@@ -40,7 +41,7 @@ export default function () {
       console.error("Erro ao parsear a resposta JSON:", e);
     }
 
-    let mensagem = body.mensagem;
+    //let mensagem = body.mensagem;
 
     if (body.romaneio && body.romaneio.numero) {
       var numero = body.romaneio.numero;

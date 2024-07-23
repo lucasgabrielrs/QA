@@ -2,6 +2,7 @@ import http from "k6/http";
 import { check, sleep, fail } from "k6";
 import { baseURL, params } from "../config.js";
 import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
+import gerarPayload from "../payloads/payloadRomaneio.js";
 
 export function handleSummary(data) {
   const timestamp = new Date().toISOString().replace(/[:.-]/g, "_");
@@ -16,10 +17,10 @@ export function handleSummary(data) {
 
 export const options = {
   vus: 2,
-  iterations: 2,
+  iterations: 3,
 };
 
-const payload = JSON.parse(open("../payloads/romaneioPayload.json"));
+const payload = gerarPayload();
 
 export default function () {
   const url = `${baseURL}/romaneios/criar`;
@@ -38,6 +39,7 @@ export default function () {
 
     if (body.romaneio && body.romaneio.numero) {
       var numero = body.romaneio.numero;
+      console.log(numero);
     } //else {
 
     //console.error(
