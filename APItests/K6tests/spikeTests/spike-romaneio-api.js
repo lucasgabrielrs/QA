@@ -6,8 +6,8 @@ import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporte
 export function handleSummary(data) {
   const timestamp = new Date().toISOString().replace(/[:.-]/g, "_");
   const fileName = `Spike-Romaneio_${timestamp}.html`;
-  const directory = "C:\\QA\\APItests\\K6tests\\reports\\spikeTests"; // Especifique o caminho desejado aqui
-  const filePath = `${directory}\\${fileName}`; // Forma o caminho manualmente para Windows
+  const directory = "C:\\QA\\APItests\\K6tests\\reports\\spikeTests";
+  const filePath = `${directory}\\${fileName}`;
 
   return {
     [filePath]: htmlReport(data),
@@ -20,6 +20,9 @@ export const options = {
     { duration: "20s", target: 250 },
     { duration: "30s", target: 0 },
   ],
+  thresholds: {
+    http_req_failed: [{ threshold: "rate<0.01", abortOnFail: true }],
+  },
 };
 
 const payload = JSON.parse(open("../payloads/romaneioPayload.json"));
