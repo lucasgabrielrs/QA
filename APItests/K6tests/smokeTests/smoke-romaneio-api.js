@@ -5,18 +5,18 @@ import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporte
 
 export function handleSummary(data) {
   const timestamp = new Date().toISOString().replace(/[:.-]/g, "_");
-  const fileName = `summary_${timestamp}.html`;
+  const fileName = `Smoke-Romaneio_${timestamp}.html`;
+  const directory = "C:\\QA\\APItests\\K6tests\\reports\\smokeTests"; // Especifique o caminho desejado aqui
+  const filePath = `${directory}\\${fileName}`; // Forma o caminho manualmente para Windows
+
   return {
-    [fileName]: htmlReport(data),
+    [filePath]: htmlReport(data),
   };
 }
 
 export const options = {
-  stages: [
-    { duration: "30s", target: 200 },
-    { duration: "20s", target: 250 },
-    { duration: "30s", target: 0 },
-  ],
+  vus: 2,
+  iterations: 2,
 };
 
 const payload = JSON.parse(open("../payloads/romaneioPayload.json"));
