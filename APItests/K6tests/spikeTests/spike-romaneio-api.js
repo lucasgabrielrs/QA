@@ -18,7 +18,7 @@ export function handleSummary(data) {
 export const options = {
   stages: [
     { duration: "30s", target: 200 },
-    { duration: "20s", target: 250 },
+    { duration: "20s", target: 200 },
     { duration: "30s", target: 0 },
   ],
   thresholds: {
@@ -45,13 +45,13 @@ export default function () {
 
     if (body.romaneio && body.romaneio.numero) {
       var numero = body.romaneio.numero;
-    } //else {
-
-    //console.error(
-    //"A resposta não contém a propriedade 'romaneio' ou 'romaneio.numero'."
-    //);
-    //console.error("Resposta completa:", body);
-    //}
+    } else {
+      //Esse else mostra o erro de duplicate
+      console.error(
+        "A resposta não contém a propriedade 'romaneio' ou 'romaneio.numero'."
+      );
+      console.error("Resposta completa:", body);
+    }
 
     check(resp, {
       "Status should be 200": (r) => r.status === 200,

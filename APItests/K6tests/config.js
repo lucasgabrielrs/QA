@@ -1,4 +1,4 @@
-export const baseURL = "http://api3-canario.azapfy.com.br/api";
+export const baseURL = "https://api3.azapfy.com.br/api";
 
 export const params = {
   headers: {
