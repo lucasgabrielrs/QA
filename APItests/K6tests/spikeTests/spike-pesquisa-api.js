@@ -6,7 +6,7 @@ import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporte
 export function handleSummary(data) {
   const timestamp = new Date().toISOString().replace(/[:.-]/g, "_");
   const fileName = `Spike-Pesquisa${timestamp}.html`;
-  const directory = "C:\\QA\\APItests\\K6tests\\reports\\spikeTests"; // Especifique o caminho desejado aqui
+  const directory = "C:\\QA\\APItests\\reports\\spikeTests"; // Especifique o caminho desejado aqui
   const filePath = `${directory}\\${fileName}`; // Forma o caminho manualmente para Windows
 
   return {
@@ -25,7 +25,7 @@ export const options = {
   },
 };
 
-const payload = JSON.parse(open("../payloads/pesquisaPayload.json"));
+const payload = JSON.parse(open("../../payloads/pesquisaPayload.json"));
 
 export default function () {
   const url = `${baseURL}/pesquisar`;

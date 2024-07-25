@@ -2,12 +2,12 @@ import http from "k6/http";
 import { check, sleep, fail } from "k6";
 import { baseURL, params } from "../config.js";
 import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
-import gerarPayload from "../payloads/romaneioPayload.js";
+import gerarPayload from "../../payloads/romaneioPayload.js";
 
 export function handleSummary(data) {
   const timestamp = new Date().toISOString().replace(/[:.-]/g, "_");
   const fileName = `Smoke-Romaneio_${timestamp}.html`;
-  const directory = "C:\\QA\\APItests\\K6tests\\reports\\smokeTests"; // Especifique o caminho desejado aqui
+  const directory = "C:\\QA\\APItests\\reports\\smokeTests"; // Especifique o caminho desejado aqui
   const filePath = `${directory}\\${fileName}`; // Forma o caminho manualmente para Windows
 
   return {

@@ -2,12 +2,12 @@ import http from "k6/http";
 import { check, sleep } from "k6";
 import { baseURL, params } from "../config.js";
 import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
-import gerarPayload from "../payloads/romaneioPayload.js";
+import gerarPayload from "../../payloads/romaneioPayload.js";
 
 export function handleSummary(data) {
   const timestamp = new Date().toISOString().replace(/[:.-]/g, "_");
   const fileName = `Spike-Romaneio_${timestamp}.html`;
-  const directory = "C:\\QA\\APItests\\K6tests\\reports\\spikeTests";
+  const directory = "C:\\QA\\APItests\\reports\\spikeTests";
   const filePath = `${directory}\\${fileName}`;
 
   return {
