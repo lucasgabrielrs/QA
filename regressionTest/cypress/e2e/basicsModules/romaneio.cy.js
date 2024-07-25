@@ -62,14 +62,14 @@ describe("Romaneios", () => {
 
     cy.get("#CriarRomComp > .MuiButton-label").click();
 
-    cy.wait("@criarRomRequest", { timeout: 10000 }).then((interception) => {
-      const payload = interception.request.body;
-      // Escrever o payload em um arquivo
-      cy.writeFile(
-        "../APItests/smokeTests/payloads/romaneioPayload.json",
-        payload
-      );
-    });
+    // cy.wait("@criarRomRequest", { timeout: 10000 }).then((interception) => {
+    //   const payload = interception.request.body;
+    //   // Escrever o payload em um arquivo
+    //   cy.writeFile(
+    //     "../APItests/smokeTests/payloads/romaneioPayload.json",
+    //     payload
+    //   );
+    // });
 
     cy.get(
       ".MuiDialog-paper > .MuiPaper-root > .MuiToolbar-root > .MuiButtonBase-root"

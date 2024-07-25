@@ -67,11 +67,11 @@ describe("Modulo Pesquisa", () => {
       "#tutorialPesquisaBtn > .d-flex > :nth-child(1) > :nth-child(1) > .MuiButtonBase-root > .MuiButton-label"
     ).click();
 
-    cy.wait("@pesquisaRequest", { timeout: 30000 }).then((interception) => {
-      const payload = interception.request.body;
-      // Escrever o payload em um arquivo
-      cy.writeFile("cypress/fixtures/pesquisaPayload.json", payload);
-    });
+    // cy.wait("@pesquisaRequest", { timeout: 30000 }).then((interception) => {
+    //   const payload = interception.request.body;
+    //   // Escrever o payload em um arquivo
+    //   cy.writeFile("cypress/fixtures/pesquisaPayload.json", payload);
+    // });
 
     cy.get('button[aria-label="Mostrar colunas"]', { timeout: 20000 })
       .find("span.material-icons")
