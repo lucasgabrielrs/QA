@@ -2,7 +2,7 @@ import http from "k6/http";
 import { check, sleep } from "k6";
 import { baseURL, params } from "../config.js";
 import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
-import gerarPayload from "../payloads/payloadRomaneio.js";
+import gerarPayload from "../payloads/romaneioPayload.js";
 
 export function handleSummary(data) {
   const timestamp = new Date().toISOString().replace(/[:.-]/g, "_");
@@ -45,20 +45,20 @@ export default function () {
 
     if (body.romaneio && body.romaneio.numero) {
       var numero = body.romaneio.numero;
-    } else {
-      //Esse else mostra o erro de duplicate
-      console.error(
-        "A resposta não contém a propriedade 'romaneio' ou 'romaneio.numero'."
-      );
-      console.error("Resposta completa:", body);
-    }
+    } // else {
+    //   //Esse else mostra o erro de duplicate
+    //   console.error(
+    //     "A resposta não contém a propriedade 'romaneio' ou 'romaneio.numero'."
+    //   );
+    //   console.error("Resposta completa:", body);
+    // }
 
     check(resp, {
       "Status should be 200": (r) => r.status === 200,
     });
-  } else {
-    console.error("Request failed. Status code:", resp.status);
-  }
+  } //else {
+  // console.error("Request failed. Status code:", resp.status);
+  // }
 
   sleep(2);
 
@@ -78,9 +78,9 @@ export default function () {
     check(del, {
       "Status delete should be 200": (r) => r.status === 200,
     });
-  } else {
-    console.error("Request failed. Status code:", del.status);
-  }
+  } // else {
+  //  console.error("Request failed. Status code:", del.status);
+  //}
 
   sleep(2);
 }

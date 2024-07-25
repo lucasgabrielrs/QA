@@ -1,0 +1,22 @@
+{
+  "grupo_emp": "JM",
+  "dt": {
+    "tipo": "emissao",
+    "ini": "2024-07-24 00:00:00",
+    "fim": "2024-07-24 23:59:59"
+  },
+  "base": {
+    "bases": [
+      "ARCOVERDE",
+      "SALGUEIRO",
+      "CARUARU",
+      "PETROLINA",
+      "CENTROANTIGO",
+      "RECIFE"
+    ],
+    "sem_base": true
+  },
+  "tipo_prazo": "NORMAL",
+  "timezone": "America/Sao_Paulo",
+  "classificacao": "NORMAL"
+}
