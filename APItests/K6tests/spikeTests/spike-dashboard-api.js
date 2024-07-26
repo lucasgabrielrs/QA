@@ -3,16 +3,16 @@ import { check, sleep } from "k6";
 import { baseURL, params } from "../config.js";
 import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
 
-export function handleSummary(data) {
-  const timestamp = new Date().toISOString().replace(/[:.-]/g, "_");
-  const fileName = `Spike-Dash_${timestamp}.html`;
-  const directory = "C:\\QA\\APItests\\reports\\spikeTests"; // Especifique o caminho desejado aqui
-  const filePath = `${directory}\\${fileName}`; // Forma o caminho manualmente para Windows
+// export function handleSummary(data) {
+//   const timestamp = new Date().toISOString().replace(/[:.-]/g, "_");
+//   const fileName = `Spike-Dash_${timestamp}.html`;
+//   const directory = "C:\\QA\\APItests\\reports\\spikeTests"; // Especifique o caminho desejado aqui
+//   const filePath = `${directory}\\${fileName}`; // Forma o caminho manualmente para Windows
 
-  return {
-    [filePath]: htmlReport(data),
-  };
-}
+//   return {
+//     [filePath]: htmlReport(data),
+//   };
+// }
 
 export const options = {
   stages: [

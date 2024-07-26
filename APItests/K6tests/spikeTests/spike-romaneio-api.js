@@ -4,16 +4,16 @@ import { baseURL, params } from "../config.js";
 import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
 import gerarPayload from "../../payloads/romaneioPayload.js";
 
-export function handleSummary(data) {
-  const timestamp = new Date().toISOString().replace(/[:.-]/g, "_");
-  const fileName = `Spike-Romaneio_${timestamp}.html`;
-  const directory = "C:\\QA\\APItests\\reports\\spikeTests";
-  const filePath = `${directory}\\${fileName}`;
+// export function handleSummary(data) {
+//   const timestamp = new Date().toISOString().replace(/[:.-]/g, "_");
+//   const fileName = `Spike-Romaneio_${timestamp}.html`;
+//   const directory = "C:\\QA\\APItests\\reports\\spikeTests";
+//   const filePath = `${directory}\\${fileName}`;
 
-  return {
-    [filePath]: htmlReport(data),
-  };
-}
+//   return {
+//     [filePath]: htmlReport(data),
+//   };
+// }
 
 export const options = {
   stages: [
